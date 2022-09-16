@@ -5,8 +5,6 @@ import { getContacts } from 'redux/contacts/contacts -selectors';
 import css from './ContactForm.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import Button from 'react-bootstrap/Button';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -84,7 +82,6 @@ export const ContactForm = () => {
           Add contact
         </button>
       </form>
-      {/* <Button variant="warning">Add contact</Button>{' '} */}
     </>
   );
 };

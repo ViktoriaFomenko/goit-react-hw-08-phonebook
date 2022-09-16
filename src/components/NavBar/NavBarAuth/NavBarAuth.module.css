@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(104, 130, 58);
+}
+
+.link.active {
+  font-weight: bold;
+}

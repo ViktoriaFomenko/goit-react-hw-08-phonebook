@@ -1,0 +1,13 @@
+.container {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  text-decoration: none;
+  color: rgb(83, 94, 3);
+  font-weight: bold;
+  font-size: 18px;
+}
