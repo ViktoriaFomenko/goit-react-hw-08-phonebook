@@ -4,8 +4,8 @@ const useForm = ({ initialState, onSubmit }) => {
   const [state, setState] = useState({ ...initialState });
 
   const handleChange = ({ target }) => {
-    const { name, value, type, checked } = target;
-    const newValue = type === 'checkbox' ? checked : value;
+    const { name, value, type } = target;
+    const newValue = type === 'type' ? type : value;
     setState(prevState => ({
       ...prevState,
       [name]: newValue,

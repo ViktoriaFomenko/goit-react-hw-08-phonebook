@@ -1,57 +1,19 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contacts -operations';
-import { getContacts } from 'redux/contacts/contacts -selectors';
+import useForm from 'shared/api/hooks/UseForm';
+
+import { initialState } from './initialState';
 import css from './ContactForm.module.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-export const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+export const ContactForm = ({ onSubmit }) => {
+  const { state, handleChange, handleSubmit } = useForm({
+    initialState,
+    onSubmit,
+  });
 
-  const dispatch = useDispatch();
-
-  const handleChange = event => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
-  };
-
-  const reset = () => {
-    setName('');
-    setNumber('');
-  };
-
-  const handleOnSubmit = event => {
-    event.preventDefault();
-    const duplicationName = contacts.find(contact => {
-      return contact.name.toLowerCase() === name.toLowerCase();
-    });
-
-    if (duplicationName) {
-      toast.info(`${name} is already in contacts.`);
-      return;
-    }
-
-    dispatch(addContact({ name, number }));
-    reset();
-  };
+  const { name, number } = state;
 
   return (
     <>
-      <ToastContainer autoClose={2000} position="top-center" closeOnClick />
-      <form className={css.form} onSubmit={handleOnSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <label className={css.label}>
           Name
           <input
