@@ -5,7 +5,7 @@ const PublicRoute = () => {
   const isLogin = useAuth();
 
   if (isLogin) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/contacts" />;
   }
   return <Outlet />;
 };
