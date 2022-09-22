@@ -11,14 +11,3 @@
 .item:not(:last-child) {
   margin-bottom: 5px;
 }
-
-.button {
-  display: block;
-  margin-left: 40px;
-  background-color: burlywood;
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  border-radius: 10px;
-}

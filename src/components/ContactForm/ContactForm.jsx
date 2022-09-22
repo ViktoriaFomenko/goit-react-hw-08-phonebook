@@ -2,6 +2,8 @@ import useForm from 'shared/api/hooks/UseForm';
 
 import { initialState } from './initialState';
 import css from './ContactForm.module.css';
+import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 
 export const ContactForm = ({ onSubmit }) => {
   const { state, handleChange, handleSubmit } = useForm({
@@ -40,9 +42,9 @@ export const ContactForm = ({ onSubmit }) => {
             onChange={handleChange}
           />
         </label>
-        <button className={css.button} type="submit">
-          Add contact
-        </button>
+        <Button type="submit" variant="contained" startIcon={<AddIcon />}>
+          Add
+        </Button>
       </form>
     </>
   );
