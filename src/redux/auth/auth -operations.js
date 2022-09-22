@@ -1,13 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import * as api from '../../shared/api/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const signup = createAsyncThunk('auth/signup', async data => {
   try {
     const result = await api.forSignup(data);
     return result;
   } catch (error) {
-    alert(
+    toast.error(
       'Error during registration! Check if the data is filled in correctly or try again later!'
     );
   }
@@ -18,7 +20,7 @@ export const login = createAsyncThunk('auth/login', async data => {
     const result = await api.forLogin(data);
     return result;
   } catch (error) {
-    alert('You have entered an incorrect email or password!');
+    toast.warn('You have entered an incorrect email or password!');
   }
 });
 
@@ -27,7 +29,7 @@ export const logout = createAsyncThunk('auth/logout', async _ => {
     const result = await api.forLogout();
     return result;
   } catch (error) {
-    alert('Something went wrong!');
+    toast.error('Something went wrong!');
   }
 });
 

@@ -1,6 +1,8 @@
 import useForm from '../../shared/api/hooks/UseForm';
 import css from './RegisterForm.module.css';
 import { initialState } from './InitialState';
+import Button from '@mui/material/Button';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 const RegisterForm = ({ onSubmit }) => {
   const { state, handleChange, handleSubmit } = useForm({
@@ -14,7 +16,7 @@ const RegisterForm = ({ onSubmit }) => {
     <form action="" onSubmit={handleSubmit}>
       <div className={css.container}>
         <label className={css.label} htmlFor="">
-          Имя пользователя:
+          User name:
         </label>
         <input
           value={name}
@@ -22,13 +24,13 @@ const RegisterForm = ({ onSubmit }) => {
           onChange={handleChange}
           className={css.input}
           type="text"
-          placeholder="Введите имя пользователя"
+          placeholder="Enter name"
           required
         />
       </div>
       <div className={css.container}>
         <label className={css.label} htmlFor="">
-          Email пользователя:
+          User email:
         </label>
         <input
           value={email}
@@ -36,12 +38,12 @@ const RegisterForm = ({ onSubmit }) => {
           onChange={handleChange}
           className={css.input}
           type="email"
-          placeholder="Введите email пользователя"
+          placeholder="Enter email"
         />
       </div>
       <div className={css.container}>
         <label className={css.label} htmlFor="">
-          Пароль пользователя:
+          User password:
         </label>
         <input
           value={password}
@@ -49,11 +51,13 @@ const RegisterForm = ({ onSubmit }) => {
           onChange={handleChange}
           className={css.input}
           type="password"
-          placeholder="Введите пароль пользователя"
+          placeholder="Enter password"
         />
       </div>
       <div className={css.container}>
-        <button type="submit">Регистрация</button>
+        <Button type="submit" variant="contained" startIcon={<HowToRegIcon />}>
+          Sign in
+        </Button>
       </div>
     </form>
   );

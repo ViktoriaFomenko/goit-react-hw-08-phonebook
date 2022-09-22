@@ -1,6 +1,8 @@
 import useForm from '../../shared/api/hooks/UseForm';
 import css from './LoginForm.module.css';
 import { initialState } from './InitialState';
+import Button from '@mui/material/Button';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 const LoginForm = ({ onSubmit }) => {
   const { state, handleChange, handleSubmit } = useForm({
@@ -14,7 +16,7 @@ const LoginForm = ({ onSubmit }) => {
     <form action="" onSubmit={handleSubmit}>
       <div className={css.container}>
         <label className={css.label} htmlFor="">
-          Email пользователя:
+          Email:
         </label>
         <input
           value={email}
@@ -22,12 +24,12 @@ const LoginForm = ({ onSubmit }) => {
           onChange={handleChange}
           className={css.input}
           type="email"
-          placeholder="Введите email пользователя"
+          placeholder="Enter email"
         />
       </div>
       <div className={css.container}>
         <label className={css.label} htmlFor="">
-          Пароль пользователя:
+          Password:
         </label>
         <input
           value={password}
@@ -35,11 +37,13 @@ const LoginForm = ({ onSubmit }) => {
           onChange={handleChange}
           className={css.input}
           type="password"
-          placeholder="Введите пароль пользователя"
+          placeholder="Enter password"
         />
       </div>
       <div className={css.container}>
-        <button type="submit">Войти</button>
+        <Button type="submit" variant="contained" startIcon={<HowToRegIcon />}>
+          Sign in
+        </Button>
       </div>
     </form>
   );
