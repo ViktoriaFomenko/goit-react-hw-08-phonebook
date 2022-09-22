@@ -1,21 +1,55 @@
-import useForm from 'shared/api/hooks/UseForm';
-
-import { initialState } from './initialState';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/contacts/contacts -selectors';
 import css from './ContactForm.module.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 
-export const ContactForm = ({ onSubmit }) => {
-  const { state, handleChange, handleSubmit } = useForm({
-    initialState,
-    onSubmit,
-  });
+export const ContactForm = () => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const contacts = useSelector(getContacts);
 
-  const { name, number } = state;
+  const handleChange = event => {
+    const { name, value } = event.target;
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
+
+  const handleOnSubmit = event => {
+    event.preventDefault();
+    const duplicationName = contacts.find(contact => {
+      return contact.name.toLowerCase() === name.toLowerCase();
+    });
+
+    if (duplicationName) {
+      toast.info(`${name} is already in contacts.`);
+      return;
+    }
+
+    reset();
+  };
 
   return (
     <>
-      <form className={css.form} onSubmit={handleSubmit}>
+      <form className={css.form} onSubmit={handleOnSubmit}>
         <label className={css.label}>
           Name
           <input
