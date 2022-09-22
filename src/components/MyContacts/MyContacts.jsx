@@ -4,7 +4,6 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import {
   fetchContacts,
-  addContact,
   removeContact,
 } from 'redux/contacts/contacts -operations';
 import { set_filter } from 'redux/filter/filter -actions';
@@ -23,9 +22,9 @@ const MyContacts = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const AddContact = payload => {
-    dispatch(addContact(payload));
-  };
+  // const AddContact = payload => {
+  //   dispatch(addContact(payload));
+  // };
 
   const RemoveContact = id => {
     dispatch(removeContact(id));
@@ -38,7 +37,7 @@ const MyContacts = () => {
   return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={AddContact} />
+      <ContactForm />
 
       <div title="Contacts">
         <label className={css.label}>

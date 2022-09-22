@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/contacts/contacts -operations';
 import { getContacts } from 'redux/contacts/contacts -selectors';
 import css from './ContactForm.module.css';
 import { toast } from 'react-toastify';
@@ -12,6 +13,8 @@ export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(getContacts);
+
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -43,7 +46,7 @@ export const ContactForm = () => {
       toast.info(`${name} is already in contacts.`);
       return;
     }
-
+    dispatch(addContact({ name, number }));
     reset();
   };
 
